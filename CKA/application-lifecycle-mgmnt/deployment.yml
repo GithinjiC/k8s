@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+    type: frontend
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: frontend
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+        command: ["sleep"] # similar to entrypoint in docker
+        args: ["10"] # args to be passed to the entrypoint
+        resizePolicy: # Check whether still in beta
+        - resourceName: cpu
+          restartPolicy: NotRequired
+        - resourceName: memory
+          restartPolicy: RestartContainer
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+  replicas: 6
+  selector:
+    matchLabels:
+      type: frontend

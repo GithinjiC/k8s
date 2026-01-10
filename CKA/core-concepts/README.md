@@ -3,6 +3,9 @@
 kubectl api-resources
 kubectl explain -h
 kubectl explain pods --recursive
+kubectl replace -h # might have to use the --force flag to delete and replace with new config
+kubectl describe <resource> <resource_name>
+
 ``` 
 
 ### Pods
@@ -10,6 +13,7 @@ kubectl explain pods --recursive
 ```bash
 kubectl apply -f simple-pod.yml
 kubectl get pods -o wide
+kubectl get pods --watch
 kubectl describe pod <pod-name>
 kubectl run redis --image=redis -n=dev
 kubectl run custom-nginx --image=nginx --port=8080
@@ -41,11 +45,12 @@ kubectl scale --replicas=6 -f replicaset-def.yml
 ```
 
 ### Deployments
-*Deployments create replicasets*
+*Deployments create replicasets*  
+*An edit of the deployment automatically deletes and recreates the pods*
 
 ```bash
 kubectl create -f first-deployment.yml
-kubectl create deployment nginx --image=nginx
+kubectl create deployment nginx --image=nginx --replicas=2 --dry-run=client -o yaml
 kubectl get deployments
 kubectl get rs
 kubectl get pods

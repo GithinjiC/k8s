@@ -1,4 +1,5 @@
 ### Rollout
+
 ```bash
 kubectl create -f deployment.yml
 kubectl get deployments
@@ -10,14 +11,17 @@ kubectl rollout undo deployment/myapp-deployment
 ```
 
 ### Deployment Strategies
+
 1. Recreate
 2. Rolling Update(default)
 
 ### Env Variables
-*Use `spec.containers.env`*  
-*For configMaps use `env.valueFrom.configMapKeyRef`*  
-*For secrets use `env.valueFrom.secretKeyRef`*  
-*Secrets and ConfigMaps can be mounted as files. Each secret is created as separate file*
+
+_Use `spec.containers.env`_  
+_For configMaps use `env.valueFrom.configMapKeyRef`_  
+_For secrets use `env.valueFrom.secretKeyRef`_  
+_Secrets and ConfigMaps can be mounted as files. Each secret is created as separate file_
+
 ```bash
 # imperative method
 kubectl create configmap <config_name> \
@@ -54,13 +58,16 @@ echo -n 'DB_HOST' | base64 --encode
 ```
 
 ### Autoscaling
-*Vertical Scaling - inc resources i.e cpu, memory*  
-*Horizontal Scaling inc instances*
+
+_Vertical Scaling - inc resources i.e cpu, memory_  
+_Horizontal Scaling inc instances_
+
 ```bash
 # To create a HPA imperatively
 kubectl autoscale deployment my-app --cpu-percent=50 --min=1 --max=10
 kubectl get hpa
 kubectl delete hpa my-app
 ```
-*HPA is built in, VPA is not*  
-*Check if In-Place Update of Pod Resources is available*
+
+_HPA is built in, VPA is not_  
+_Check if In-Place Update of Pod Resources is available_

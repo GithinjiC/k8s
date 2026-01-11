@@ -78,6 +78,6 @@ sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
 sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 ```
 
-_Use the CustomResourceDefinition object to create custom objects/resources_
-_Will need a custom controller defined as well_
+_Use the CustomResourceDefinition object to create custom objects/resources_  
+_Will need a custom controller defined as well_  
 _Can package both using an operator framework_

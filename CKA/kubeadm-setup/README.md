@@ -87,4 +87,7 @@ kubectl rollout restart daemonset kube-flannel-ds -n kube-flannel
 # Run this from the kubeadm init on the master node to join the worker nodes to the cluster
 sudo kubeadm join 192.168.100.72:6443 --token mj90wt.riacn3dbenkrumk2 \
 	--discovery-token-ca-cert-hash sha256:e34c8e5d89f67346b4782e9c02f3858cf8324376fc5c9b77c8cada9783dc52fb
+
+# command to view pods in the worker node
+sudo kubectl get pods --kubeconfig=/etc/kubernetes/kubelet.conf --field-selector spec.nodeName=node02
 ```
